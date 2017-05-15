@@ -1,8 +1,9 @@
 <h1 class="header">Welcome to Tic Tac Toe</h1>
 <div id="mainButtons">
 	<button class="btn btn-lg btn-primary mainButton" onclick="startNewGame()">Start a new game</button><button class="btn btn-lg btn-info mainButton" onclick="revealP()">Join a game</button>
-	<p id="gameIDInputP"><input id="gameIDInput" type="text" class="form-control" placeholder="Enter Game ID"><button class="btn btn-info mainButton">Go</button></p>
+	<p id="gameIDInputP"><input id="gameIDInput" type="text" class="form-control" placeholder="Enter Game ID"><button class="btn btn-info mainButton" onclick="joinGame()">Go</button></p>
 </div>
+
 
 
 
@@ -13,13 +14,25 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
-      <div class="modal-body">
-        ...
+      <div id="game-body" class="modal-body">
+        <p>Please choose a piece:</p>
+        <p><span class="gamePiece" onclick="choosePiece('O')">O</span><span class="gamePiece" onclick="choosePiece('X')">X</span></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
+  </div>
+</div>
+
+
+
+<div id="gameBoardTemplate">
+  <div id="gameBoardTemplate2">
+  <table>
+  <tr><td id="cell_11" class="gameBoardSpace" onclick="clicked('11')"></td><td id="cell_12" class="gameBoardSpace" onclick="clicked('12')"></td><td  id="cell_13" class="gameBoardSpace" onclick="clicked('13')"></td></tr>
+  <tr><td id="cell_21"  class="gameBoardSpace" onclick="clicked('21')"></td><td id="cell_22"  class="gameBoardSpace" onclick="clicked('22')"></td><td id="cell_23"  class="gameBoardSpace" onclick="clicked('23')"></td></tr>
+  <tr><td id="cell_31"  class="gameBoardSpace" onclick="clicked('31')"></td><td id="cell_32"  class="gameBoardSpace" onclick="clicked('32')"></td><td id="cell_33"  class="gameBoardSpace" onclick="clicked('33')"></td></tr>
+  </table>
   </div>
 </div>
