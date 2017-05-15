@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+.header {
+	width: 100%;
+	text-align: center;
+}
+
+#mainButtons {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	text-align: center;
+}
+
+#mainButtons p {
+	width: 50%;
+	text-align: center;
+	margin: auto;
+}
+
+.mainButton {
+	margin: 10px;
+}
+
+#gameIDInputP {
+	display: none;
+}
+
+#gameIDInput {
+	width: 50%;
+	display: inline-block;
+}
