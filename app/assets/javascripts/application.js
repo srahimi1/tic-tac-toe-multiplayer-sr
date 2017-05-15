@@ -14,3 +14,22 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+function revealP(){
+	$("#gameIDInputP").slideDown();
+}
+
+function startNewGame() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			console.log("here");
+			$("#gameModal").modal("show");
+		}
+
+	} // end onreadystatechange
+	request.open("get","/games/new");
+	request.send();
+
+} // end function startNewGame
