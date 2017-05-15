@@ -14,6 +14,46 @@
  *= require_self
  */
 
+.clicked {
+	width: 4em;
+	height: 4em;
+	border: 1px solid gray;
+	text-align: center;
+	padding: 1em;
+	background-color: blue;
+	color: white;
+}
+
+.gameBoardSpace {
+	width: 4em;
+	height: 4em;
+	border: 1px solid gray;
+	text-align: center;
+	padding: 1em;
+}
+
+#gameBoardTemplate, #gameBoardTemplate2 {
+	display: none;
+	margin: auto;
+}
+
+ #gameBoardTemplate2 table {
+ 	margin: auto;
+ }
+
+.gamePiece {
+	font-size: 2em;
+	color: gray;
+	margin-left: 15px;
+	margin-right: 5px;
+	padding: 10px;
+}
+
+.gamePiece:hover {
+	background-color: blue;
+	color: white;
+}
+
 .header {
 	width: 100%;
 	text-align: center;
