@@ -37,6 +37,11 @@ class GamesController < ApplicationController
 			end
 		@game.save
 		end
-		render plain: "#{@game.id}q#{@game.user2_letter}q#{@game.game_pieces}"
+		if (params[:player] == "1")
+			@game_piece = @game.user1_letter
+		else
+			@game_piece = @game.user2_letter
+		end
+		render plain: "retry: 1\n\ndata: #{@game.id}q#{@game_piece}q#{@game.game_pieces}\n\n", :content_type => "text/event-stream"
 	end
 end
