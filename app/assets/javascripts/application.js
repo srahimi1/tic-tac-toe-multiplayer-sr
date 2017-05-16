@@ -60,17 +60,21 @@ function setupGameBoard() {
 
 function clicked(rowcol) {
 	if (!blocked) {
-	blocked = 1;
-	var request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			$("#status").html("waiting for other player ...");
-		}
+		blocked = 1;
+		var cell = document.getElementById("cell_"+rowcol);
+		cell.className = "clicked";
+		cell.innerHTML = sessionStorage.letter;
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function() {
+			if (request.readyState == 4 && request.status == 200) {
+				$("#status").html("waiting for other player ...");
+			}
 
-	} // end onreadystatechange
-	request.open("get","/games/play/"+sessionStorage.gameID+"?rowcol="+rowcol+"&letter="+sessionStorage.letter);
-	request.setRequestHeader("X-CSRF-Token",document.getElementsByTagName("meta")[1].getAttribute("content"));
-	request.send(); }
+		} // end onreadystatechange
+		request.open("get","/games/play/"+sessionStorage.gameID+"?rowcol="+rowcol+"&letter="+sessionStorage.letter);
+		request.setRequestHeader("X-CSRF-Token",document.getElementsByTagName("meta")[1].getAttribute("content"));
+		request.send(); 
+	}
 }
 
 function updateGameBoard(data) {
@@ -113,6 +117,10 @@ function joinGame() {
 			sessionStorage.setItem("player", "2");
 			$("#myModalLabel").html("Game ID: "+gameID);
 			$("#gameModal").modal("show");
+			response = request.responseText + "";
+			data = response.split("data: ");
+			sessionStorage.setItem("letter", data[1].split("q")[1]);
+			console.log("letter is "+ sessionStorage.letter);
 			setupGameBoard();
 		}
 

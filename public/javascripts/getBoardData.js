@@ -8,6 +8,7 @@ onmessage = function(event) {
 	data = event.data.split(",");
 	gameID = data[0];
 	player = data[1];	
+	event1 = new EventSource("/games/"+gameID+"?player="+player);
 	getData(1); }
 }
 
@@ -18,7 +19,6 @@ function getData(code) {
 		close();
 	}
 	else if (code == 1) {
-		event1 = new EventSource("/games/"+gameID+"?player="+player);
 		event1.onmessage = function(event) {
 			postMessage(event.data);
 		}	
