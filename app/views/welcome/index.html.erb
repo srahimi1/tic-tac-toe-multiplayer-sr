@@ -1,7 +1,7 @@
 <h1 class="header">Welcome to Tic Tac Toe</h1>
 <div id="mainButtons">
 	<button class="btn btn-lg btn-primary mainButton" onclick="startNewGame()">Start a new game</button><button class="btn btn-lg btn-info mainButton" onclick="revealP()">Join a game</button>
-	<p id="gameIDInputP"><input id="gameIDInput" type="text" class="form-control" placeholder="Enter Game ID"><button class="btn btn-info mainButton" onclick="joinGame()">Go</button></p>
+	<p id="gameIDInputP"><input id="gameIDInput" type="text" class="form-control" placeholder="Game ID"><button class="btn btn-info mainButton" onclick="joinGame()">Go</button></p>
 </div>
 
 
@@ -19,7 +19,7 @@
         <p><span class="gamePiece" onclick="choosePiece('O')">O</span><span class="gamePiece" onclick="choosePiece('X')">X</span></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="stopGame()">Close</button>
       </div>
     </div>
   </div>
@@ -29,6 +29,7 @@
 
 <div id="gameBoardTemplate">
   <div id="gameBoardTemplate2">
+  <p id="status"></p>
   <table>
   <tr><td id="cell_11" class="gameBoardSpace" onclick="clicked('11')"></td><td id="cell_12" class="gameBoardSpace" onclick="clicked('12')"></td><td  id="cell_13" class="gameBoardSpace" onclick="clicked('13')"></td></tr>
   <tr><td id="cell_21"  class="gameBoardSpace" onclick="clicked('21')"></td><td id="cell_22"  class="gameBoardSpace" onclick="clicked('22')"></td><td id="cell_23"  class="gameBoardSpace" onclick="clicked('23')"></td></tr>
