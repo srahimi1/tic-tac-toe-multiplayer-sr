@@ -24,6 +24,7 @@ function startNewGame() {
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
 			var gameID = request.responseText;
+			console.log("game ID from server response is: "+gameID);
 			sessionStorage.setItem("gameID", gameID);
 			sessionStorage.setItem("player", "1");
 			$("#myModalLabel").html("Game ID: "+gameID);
@@ -40,7 +41,10 @@ function choosePiece(letter) {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
+			console.log("chosen letter from server response is: "+request.responseText);
+			var letter = request.responseText;
 			sessionStorage.setItem("letter",letter);
+			console.log("letter stored in session is: "+sessionStorage.letter);
 			setupGameBoard();
 		}
 
