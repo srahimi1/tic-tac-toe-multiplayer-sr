@@ -7,8 +7,6 @@ class Game < ApplicationRecord
 	end
 
 	def self.winner_is(arrays)
-		puts arrays.inspect
-		puts "\n\n\n\n\n\n\n"
 		totals = [0,0]
 		24.times do |x|
 			if (x % 3 == 0)
