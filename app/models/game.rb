@@ -1,16 +1,14 @@
 class Game < ApplicationRecord
 
-
-
-
 	def self.is_game_over(gameId)
 		@game = Game.find(gameId)
 		indexes = {"X" => 0, "O" => 1}
-		array_values = create_arrays(@game.game_pieces, indexes) 
-		return winner_is(array_values)
+		return winner_is( create_arrays(@game.game_pieces, indexes) )
 	end
 
-	def winner_is(arrays)
+	def self.winner_is(arrays)
+		puts arrays.inspect
+		puts "\n\n\n\n\n\n\n"
 		totals = [0,0]
 		24.times do |x|
 			if (x % 3 == 0)
@@ -32,7 +30,7 @@ class Game < ApplicationRecord
 		return "Z"
 	end
 
-	def create_arrays(pieces_temp, indexes)
+	def self.create_arrays(pieces_temp, indexes)
 		arrays = [Array.new(24,0),Array.new(24,0)]
 		pieces = pieces_temp.split(' ')
 		pieces.each do |x|			
@@ -65,7 +63,7 @@ class Game < ApplicationRecord
 					arrays[ indexes[ piece[1].to_s ] ][ 23 ] = 1
 			end	
 		end
-
+		return arrays
 	end
 
 
