@@ -13,7 +13,14 @@
 //= require turbolinks
 //= require_tree .
 
-var blocked = 0, w;
+var blocked = 0, w, gameBody, gameBoardNew;
+
+window.onload = function() {
+	gameBody = $("#game-body").html();
+	gameBoardNew = $("#gameBoardTemplate").html();
+}
+
+
 
 function revealP(){
 	$("#gameIDInputP").slideDown();
@@ -29,6 +36,7 @@ function startNewGame() {
 			sessionStorage.setItem("player", "1");
 			$("#myModalLabel").html("Game ID: "+gameID);
 			$("#gameModal").modal("show");
+			$("#game-body").html(gameBody);
 		}
 
 	} // end onreadystatechange
@@ -55,8 +63,8 @@ function choosePiece(letter) {
 }
 
 function setupGameBoard() {
-	var html = $("#gameBoardTemplate").html();
-	$("#game-body").html(html);
+	blocked = 0;
+	$("#game-body").html(gameBoardNew);
 	$("#gameBoardTemplate2").slideDown();
 	startWorker(1);
 }
@@ -65,12 +73,13 @@ function setupGameBoard() {
 function clicked(rowcol) {
 	if (!blocked) {
 		blocked = 1;
-		var cell = document.getElementById("cell_"+rowcol);
+		var cell = document.getElementById(""+rowcol+"");
 		cell.className = "clicked";
 		cell.innerHTML = sessionStorage.letter;
 		var request = new XMLHttpRequest();
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
+				console.log(request.responseText);
 				$("#status").html("waiting for other player ...");
 			}
 
@@ -83,19 +92,25 @@ function clicked(rowcol) {
 
 function updateGameBoard(data) {
 	var data2 = data + "";
-	var boardData = data2.split(" ");
+	var data3 = data2.split("w1");
+	var winner = data3[1];
+	var boardData = data3[0].split(" ");
 	for (i=0; i<boardData.length; i++) {
-		var data3 = boardData[i].split(",");
-		var cellID = data3[0];
-		var letter = data3[1];
+		var data4 = boardData[i].split(",");
+		var cellID = data4[0];
+		var letter = data4[1];
 		var cell = document.getElementById(cellID);
 		cell.onclick = function() {alert("already taken");}
-		if (boardData.length >=9) {
+		if ((winner != "Z") || (boardData.length >=9)) {
 			$("#status").html("Game Over");
 			cell.className = "clicked";
 			cell.innerHTML = letter;
 			blocked = 1;
 			startWorker(0);
+			if (winner != "Z") {
+				$("#gameWonModal").modal("show");
+				$("#game-winner").html(winner);
+			}
 		}
 		else if ((cell.innerHTML == "") && (letter == sessionStorage.letter)) {
 			cell.className = "clicked";
@@ -119,8 +134,8 @@ function joinGame() {
 		if (request.readyState == 4 && request.status == 200) {
 			sessionStorage.setItem("gameID",gameID);
 			sessionStorage.setItem("player", "2");
-			$("#myModalLabel").html("Game ID: "+gameID);
 			$("#gameModal").modal("show");
+			$("#myModalLabel").html("Game ID: "+gameID);
 			response = request.responseText + "";
 			data = response.split("data: ");
 			sessionStorage.setItem("letter", data[1].split("q")[1]);
@@ -142,7 +157,7 @@ function startWorker(code) {
 			data = event.data + "";
 			response = data.split("q");
 			sessionStorage.setItem("letter",response[1]);
-			if (response[2]) updateGameBoard(response[2]);
+			if (response[2].length > 3) updateGameBoard(response[2]);
 	}}
 	else {
 		w.postMessage(0);

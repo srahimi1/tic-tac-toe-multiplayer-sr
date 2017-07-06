@@ -31,9 +31,28 @@
   <div id="gameBoardTemplate2">
   <p id="status"></p>
   <table>
-  <tr><td id="cell_11" class="gameBoardSpace" onclick="clicked('11')"></td><td id="cell_12" class="gameBoardSpace" onclick="clicked('12')"></td><td  id="cell_13" class="gameBoardSpace" onclick="clicked('13')"></td></tr>
-  <tr><td id="cell_21"  class="gameBoardSpace" onclick="clicked('21')"></td><td id="cell_22"  class="gameBoardSpace" onclick="clicked('22')"></td><td id="cell_23"  class="gameBoardSpace" onclick="clicked('23')"></td></tr>
-  <tr><td id="cell_31"  class="gameBoardSpace" onclick="clicked('31')"></td><td id="cell_32"  class="gameBoardSpace" onclick="clicked('32')"></td><td id="cell_33"  class="gameBoardSpace" onclick="clicked('33')"></td></tr>
+  <tr><td id="0" class="gameBoardSpace" onclick="clicked('0')"></td><td id="1" class="gameBoardSpace" onclick="clicked('1')"></td><td  id="2" class="gameBoardSpace" onclick="clicked('2')"></td></tr>
+  <tr><td id="3"  class="gameBoardSpace" onclick="clicked('3')"></td><td id="4"  class="gameBoardSpace" onclick="clicked('4')"></td><td id="5"  class="gameBoardSpace" onclick="clicked('5')"></td></tr>
+  <tr><td id="6"  class="gameBoardSpace" onclick="clicked('6')"></td><td id="7"  class="gameBoardSpace" onclick="clicked('7')"></td><td id="8"  class="gameBoardSpace" onclick="clicked('8')"></td></tr>
   </table>
+  </div>
+</div>
+
+
+<div class="modal fade" id="gameWonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div id="game-won" class="modal-body">
+        <p>Game Over. The winner is: </p>
+        <p id="game-winner"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="stopGame()">Close</button>
+      </div>
+    </div>
   </div>
 </div>

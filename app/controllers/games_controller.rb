@@ -22,25 +22,30 @@ class GamesController < ApplicationController
 
 	def play
 		@game = Game.find(params[:id])
+		params[:letter].upcase!
 		if (@game.game_pieces.blank?)
-			@game.game_pieces = "cell_#{params[:rowcol]},#{params[:letter]}"
+			@game.game_pieces = "#{params[:rowcol]},#{params[:letter]}"
 			@game.save
 		else
-			@game.game_pieces = "#{@game.game_pieces} cell_#{params[:rowcol]},#{params[:letter]}"
+			@game.game_pieces = "#{@game.game_pieces} #{params[:rowcol]},#{params[:letter]}"
 			@game.save
 		end
-		head :ok
+		render plain: Game.is_game_over(params[:id])
 	end
 
 
 	def show
 		@game = Game.find(params[:id])
+		winner = "Z"
+		if (!@game.game_pieces.blank?)
+			winner = Game.is_game_over(params[:id])
+		end
 		if (params[:player] == "1")
 			@game_piece = @game.user1_letter
 		else
 			@game_piece = @game.user2_letter
 		end
-			render plain: "retry: 1000\n\ndata: #{@game.id}q#{@game_piece}q#{@game.game_pieces}\n\n", :content_type => "text/event-stream"
+			render plain: "retry: 1000\n\ndata: #{@game.id}q#{@game_piece}q#{@game.game_pieces}w1#{winner}\n\n", :content_type => "text/event-stream"
 	end
 
 end
