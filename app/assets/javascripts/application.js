@@ -20,8 +20,8 @@ window.onload = function() {
 	gameBoardNew = $("#gameBoardTemplate").html();
 }
 
-
-
+// reveals the input box to enter the game ID for the game the user wants to join. Only used to join a game, not
+// create a new game.
 function revealP(){
 	$("#gameIDInputP").slideDown();
 }
