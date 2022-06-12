@@ -2,9 +2,9 @@
 
 This is a two-player tic-tac-toe game where two players, on two different computers, can play against each other.
 
-This networked, mutliplayer tic tac toe game uses **_Server-side events (SSEs)_**, called from with-in a **_web-worker_**, to poll server data for updates to a particular game in progress.
+This networked, multi-player tic-tac-toe game uses **_Server-sent events (SSEs)_**, initially called from within a **_web-worker_**, to send updated game data from the server to the front-end clients.
 
-A **_web-worker_** is used to allow a continual running of a javascript script without stalling the main javascript thread. 
+The **_web-worker_** is used to prevent possible delays and interruptions in the main javascript event loop. 
 
 local storage in the form of **_sessionStorage_** is used to keep track of gameID, userID, and game piece (i.e. chosen letter), of the current user.
 
